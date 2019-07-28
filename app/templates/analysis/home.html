@@ -1,0 +1,68 @@
+{% extends "base.html" %} {% block content %}
+<div class="col-md-6 offset-md-3">
+
+  {% if message %}
+  <div id="message">
+    <div class="alert alert-danger" role="alert">Error : {{ message }}</div>
+  </div>
+  {% endif %}
+
+  <div class="card">
+    <div class="card-header">ファイルアップロード</div>
+    <div class="card-body">
+      <form action="/analysis/upload/" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="file">訓練データ</label><br />
+          <input type="file" name="train_data" accept="text/csv" />
+        </div>
+        <div class="form-group">
+          <label for="file">テストデータ</label><br />
+          <input type="file" name="test_data" accept="text/csv" />
+
+        </div>
+        <div class="form-group">
+          <button class="btn btn-primary" type="submit">Upload</button>
+        </div>
+      </form>
+      {% if request.session.train_uuid %}
+      <div class="alert alert-success" role="alert">訓練データ {{ request.session.train_file_name }}</div>
+      {% endif %}
+      {% if request.session.test_uuid %}
+      <div class="alert alert-success" role="alert">テストデータ {{ request.session.test_file_name }}</div>
+      {% endif %}
+    </div>
+  </div>
+  <br />
+  <div class="card">
+    <div class="card-header">トレーニング</div>
+    <div class="card-body">
+      <form action="/analysis/train/" method="POST">
+        {% csrf_token %}
+        <p>
+          <input type="radio" name="kind" value="regression" checked="checked" />回帰 <input type="radio" name="kind"
+            value="classifier" />分類
+        </p>
+        <p>
+          <button class="btn btn-primary" type="submit">Train</button>
+        </p>
+      </form>
+      {% if request.session.model_uuid %}
+      <div class="alert alert-success" role="alert">trained!</div>
+      {% endif %}
+    </div>
+  </div>
+  <br />
+  <div class="card">
+    <div class="card-header">予測結果ダウンロード</div>
+    <div class="card-body">
+      <form action="/analysis/predict/" method="GET">
+        {% csrf_token %}
+        <p>
+          <button class="btn btn-primary" type="submit">Download</button>
+        </p>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

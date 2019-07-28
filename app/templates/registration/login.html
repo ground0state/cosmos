@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}ログイン{% endblock %}
+{% block content %}
+<div class="col-md-6 offset-md-3">
+  <div class="card">
+    <header class="card-header">
+      <a href="{% url 'accounts:signup' %}" class="float-right btn btn-outline-primary">Sign up</a>
+      <h4 class="card-title mb-4 mt-1">Sign in</h4>
+    </header>
+    <article class="card-body">
+      <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+          <label>User name</label>
+          <input type="text" name="username" autofocus required id="id_username" name="" class="form-control"
+            placeholder="username">
+          {{ form.username.errors }}
+        </div> <!-- form-group// -->
+        <div class="form-group">
+          <label>Password</label>
+          <input class="form-control" placeholder="******" type="password" name="password" required id="id_password">
+          {{ form.password.errors }}
+        </div> <!-- form-group// -->
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary btn-block"> Login </button>
+        </div> <!-- form-group// -->
+        <a class="float-right" href="{% url 'password_reset' %}">Forgot password?</a>
+      </form>
+    </article>
+  </div> <!-- card.// -->
+</div>
+{% endblock %}
+
+<h2>ログイン</h2>
+<form method="post" novalidate>
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">ログイン</button>
+</form>
+<br />
+<p><a href="{% url 'accounts:signup' %}">ユーザー登録</a></p>
+<p><a href="{% url 'password_reset' %}">パスワード再設定</a></p>

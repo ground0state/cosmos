@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+<div class='errorpage'>
+  <h2>404 Not Found</h2></br>
+  お探しのページが見つかりませんでした。</br>
+  <a class="hover-under" href="{% url 'analysis:home' %}">トップページへ戻る</a>
+</div>
+{% endblock %}

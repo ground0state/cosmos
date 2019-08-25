@@ -5,5 +5,5 @@ from django.db import models
 class CustomUser(AbstractUser):
     """拡張ユーザーモデル"""
 
-    class Meta(object):
+    class Meta(AbstractUser.Meta):
         db_table = 'custom_user'

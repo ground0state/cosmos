@@ -24,9 +24,6 @@ PROJECT_NAME = os.path.basename(BASE_DIR)
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '67ft1hjpx0z&g+(qb1s@+ikx4vwgs!b(6h*ulg*_1nbpz(kclk'
 
-ALLOWED_HOSTS = []
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -72,7 +69,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'config.wsgi.application'
 
 
-# Database
+# Database local setting
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
@@ -121,7 +118,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
 
 
 # LOGIN
@@ -140,10 +136,12 @@ SESSION_COOKIE_HTTPONLY = True
 
 
 # heroku production
-DATABASES['default'] = dj_database_url.config()
+DATABASES['default'].update(dj_database_url.config())
+
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 ALLOWED_HOSTS = ['*']
 STATIC_ROOT = 'staticfiles'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
 DEBUG = False
 
 try:

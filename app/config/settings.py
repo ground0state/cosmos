@@ -27,14 +27,14 @@ SECRET_KEY = '67ft1hjpx0z&g+(qb1s@+ikx4vwgs!b(6h*ulg*_1nbpz(kclk'
 # Application definition
 
 INSTALLED_APPS = [
+    'accounts.apps.AccountsConfig',
+    'analysis.apps.AnalysisConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'accounts.apps.AccountsConfig',
-    'analysis.apps.AnalysisConfig',
+    'django.contrib.staticfiles'
 ]
 
 MIDDLEWARE = [

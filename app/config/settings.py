@@ -121,7 +121,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )
-STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
 
 
 # LOGIN
@@ -138,18 +138,12 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
 SESSION_COOKIE_HTTPONLY = True
 
-ALLOWED_HOSTS = ['*']
-
 
 # heroku production
 DATABASES['default'] = dj_database_url.config()
-
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
 ALLOWED_HOSTS = ['*']
-
 STATIC_ROOT = 'staticfiles'
-
 DEBUG = False
 
 try:

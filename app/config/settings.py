@@ -70,7 +70,6 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -125,12 +124,9 @@ SESSION_COOKIE_HTTPONLY = True
 
 # heroku production
 DATABASES = {'default': dj_database_url.config()}
-
-
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 ALLOWED_HOSTS = ['*']
 STATIC_ROOT = 'staticfiles'
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
 DEBUG = False
 
 try:
